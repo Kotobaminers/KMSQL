@@ -1,0 +1,3 @@
+name: KMSQL
+main: com.github.orgs.kotobaminers.kmsql.KMSQL
+version: ${git.commit.id.describe}
