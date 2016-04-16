@@ -11,7 +11,7 @@ public class Config {
 	public static String PASS = "";
 	public static String DSN = "";
 
-	private static boolean enable = false;
+	public static boolean enable = false;
 	public static String REGISTER_PAGE = "";
 	public static List<String> MESSAGES = new ArrayList<String>();
 
@@ -34,8 +34,12 @@ public class Config {
 	private static final File CONFIG_FILE = new File(KMSQL.plugin.getDataFolder() + "//config.yml");
 	private static final YamlConfiguration CONFIG = YamlConfiguration.loadConfiguration(CONFIG_FILE);
 
-	public static void importConfig() {
+	public static void load() {
 		enable = CONFIG.getBoolean(Setting.ENABLE.setting);
+		if (!enable) {
+			return;
+		}
+
 		USER = CONFIG.getString(Setting.DATABASE.setting + "." + Setting.USER.setting);
 		PASS = CONFIG.getString(Setting.DATABASE.setting + "." + Setting.PASS.setting);
 		DSN = CONFIG.getString(Setting.DATABASE.setting + "." + Setting.DSN.setting);

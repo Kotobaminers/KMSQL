@@ -12,6 +12,7 @@ public class KMSQL extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 		getServer().getPluginManager().registerEvents(new SQLConnector(), this);
+		Config.load();
 	}
 
 	@Override
