@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.github.orgs.kotobaminers.kmsql.KMSQLCommand.Commands;
+
 
 public class KMSQL extends JavaPlugin {
 	public static KMSQL plugin;
@@ -12,7 +14,12 @@ public class KMSQL extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 		getServer().getPluginManager().registerEvents(new SQLConnector(), this);
+		for(Commands command : Commands.values()) {
+			this.getCommand(command.toString()).setExecutor(new KMSQLCommand(this));
+		}
+
 		Config.load();
+
 	}
 
 	@Override
